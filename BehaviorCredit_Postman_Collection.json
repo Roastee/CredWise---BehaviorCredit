@@ -1,0 +1,104 @@
+{
+  "info": {
+    "name": "BehaviorCredit API v2.1",
+    "description": "India's First AI-Powered Alternative Credit Scoring API\nTeam AntiGravity #108 | AAVISHKAR PRAVAH 2.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "2.1.0"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:5000" },
+    { "key": "api_key",  "value": "bc_live_demo_key_001" },
+    { "key": "consent_token", "value": "ct_demo_abc123" }
+  ],
+  "item": [
+    {
+      "name": "🏥 Health Check",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/health",
+        "description": "Verify API is online. Returns MongoDB connection status."
+      }
+    },
+    {
+      "name": "🔑 Issue Consent Token",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/api/v2/consent",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"applicant_id\": \"ramesh-kumar-001\",\n  \"scopes\": [\"upi\", \"bills\", \"shg\", \"gig\", \"app_usage\"]\n}"
+        },
+        "description": "Issue a DPDPA-compliant consent token. Required before scoring."
+      }
+    },
+    {
+      "name": "◈ Score — Ramesh (Gig Worker, Hindi)",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/api/v2/score",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"consent_token\": \"{{consent_token}}\",\n  \"applicant_id\": \"ramesh-kumar-001\",\n  \"user_id\": \"ramesh-kumar-001\",\n  \"occupation\": \"Gig Worker\",\n  \"monthly_income\": 18000,\n  \"signals\": {\n    \"upiMonths\": 18,\n    \"gigPlatform\": \"Ola\",\n    \"gigTenure\": 14,\n    \"billsOnTime\": \"Usually\",\n    \"shgMember\": \"No\",\n    \"merchantDiversity\": \"Medium\",\n    \"appSessions\": 10,\n    \"electricityStreak\": 8,\n    \"rechargeAmt\": 199\n  }\n}"
+        },
+        "description": "Score Ramesh Kumar — auto-rickshaw driver. Expected: ~718, Grade B+, Pre-Approve ₹80K"
+      }
+    },
+    {
+      "name": "◈ Score — Priya (SHG Member, Tamil)",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/api/v2/score",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"consent_token\": \"{{consent_token}}\",\n  \"applicant_id\": \"priya-lakshmi-001\",\n  \"user_id\": \"priya-lakshmi-001\",\n  \"occupation\": \"SHG Member\",\n  \"monthly_income\": 12000,\n  \"signals\": {\n    \"upiMonths\": 36,\n    \"shgMember\": \"Yes\",\n    \"shgMonths\": 48,\n    \"billsOnTime\": \"Always\",\n    \"merchantDiversity\": \"Low\",\n    \"appSessions\": 6,\n    \"electricityStreak\": 36,\n    \"rechargeAmt\": 149\n  }\n}"
+        },
+        "description": "Score Priya Lakshmi — SHG leader, tailor. Expected: ~762, Grade A, Prime ₹1.5L"
+      }
+    },
+    {
+      "name": "◈ Score — Meena (Vendor, Kannada)",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/api/v2/score",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"consent_token\": \"{{consent_token}}\",\n  \"applicant_id\": \"meena-devi-001\",\n  \"user_id\": \"meena-devi-001\",\n  \"occupation\": \"Street Vendor\",\n  \"monthly_income\": 9000,\n  \"signals\": {\n    \"upiMonths\": 24,\n    \"shgMember\": \"Yes\",\n    \"shgMonths\": 24,\n    \"billsOnTime\": \"Always\",\n    \"merchantDiversity\": \"Low\",\n    \"appSessions\": 4,\n    \"electricityStreak\": 24,\n    \"rechargeAmt\": 99\n  }\n}"
+        },
+        "description": "Score Meena Devi — vegetable vendor, 8yr electricity streak. Expected: ~681, Grade B"
+      }
+    },
+    {
+      "name": "🏢 NBFC — Get Score by User ID",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/v2/nbfc/score/ramesh-kumar-001",
+        "description": "NBFC partner endpoint. Returns BehaviorScore JSON with English + Hindi explanation."
+      }
+    },
+    {
+      "name": "📋 NBFC — List All Applicants",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/api/v2/nbfc/applicants",
+        "description": "Returns paginated list of all partner applicants with scores and risk bands."
+      }
+    },
+    {
+      "name": "📦 Bulk Score (5 applicants)",
+      "request": {
+        "method": "POST",
+        "url": "{{base_url}}/api/v2/bulk-score",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"applicants\": [\n    { \"applicant_id\": \"bulk-001\", \"occupation\": \"Gig Worker\", \"monthly_income\": 18000, \"signals\": { \"upiMonths\": 18, \"billsOnTime\": \"Usually\", \"shgMonths\": 0 } },\n    { \"applicant_id\": \"bulk-002\", \"occupation\": \"SHG Member\", \"monthly_income\": 12000, \"signals\": { \"upiMonths\": 36, \"billsOnTime\": \"Always\", \"shgMonths\": 48 } },\n    { \"applicant_id\": \"bulk-003\", \"occupation\": \"Farmer\",    \"monthly_income\": 25000, \"signals\": { \"upiMonths\": 12, \"billsOnTime\": \"Always\", \"shgMonths\": 24 } },\n    { \"applicant_id\": \"bulk-004\", \"occupation\": \"Daily Wage\", \"monthly_income\": 8000,  \"signals\": { \"upiMonths\": 6,  \"billsOnTime\": \"Sometimes\", \"shgMonths\": 0 } },\n    { \"applicant_id\": \"bulk-005\", \"occupation\": \"Street Vendor\",\"monthly_income\": 9000, \"signals\": { \"upiMonths\": 24, \"billsOnTime\": \"Always\", \"shgMonths\": 12 } }\n  ]\n}"
+        },
+        "description": "Batch score 5 applicants. Returns approval rate, avg score, and individual results."
+      }
+    }
+  ]
+}

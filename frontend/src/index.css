@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@400;500;600;700&family=Noto+Sans+Kannada:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', 'Noto Sans Devanagari', 'Noto Sans Tamil', 'Noto Sans Telugu', 'Noto Sans Kannada', 'Noto Sans Bengali', sans-serif;
+    background: #050a14;
+    color: #f0f6ff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+  }
+  /* Language-specific font stacks */
+  :lang(hi), :lang(mr) { font-family: 'Noto Sans Devanagari', 'Inter', sans-serif; }
+  :lang(ta) { font-family: 'Noto Sans Tamil', 'Inter', sans-serif; }
+  :lang(te) { font-family: 'Noto Sans Telugu', 'Inter', sans-serif; }
+  :lang(kn) { font-family: 'Noto Sans Kannada', 'Inter', sans-serif; }
+  :lang(bn) { font-family: 'Noto Sans Bengali', 'Inter', sans-serif; }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: #050a14; }
+  ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 3px; }
+  input[type=range] { -webkit-appearance: none; appearance: none; height: 6px; border-radius: 3px; outline: none; cursor: pointer; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: #3b82f6; cursor: pointer; box-shadow: 0 0 8px rgba(59,130,246,0.5); }
+  select option { background: #0d1f35; color: #f0f6ff; }
+}
+
+@layer components {
+  .glass {
+    @apply bg-surface-700/70 backdrop-blur-xl border border-brand-500/10;
+  }
+  .glass-bright {
+    @apply bg-surface-700/80 backdrop-blur-xl border border-brand-500/25;
+  }
+  .card {
+    @apply bg-surface-700/90 border border-brand-500/15 rounded-2xl transition-all duration-300;
+  }
+  .card-hover {
+    @apply card hover:border-brand-500/40 hover:shadow-glow hover:-translate-y-1;
+  }
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm text-white
+           bg-gradient-to-r from-brand-500 to-cyan-500
+           hover:from-cyan-500 hover:to-brand-500
+           hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(59,130,246,0.4)]
+           active:translate-y-0 transition-all duration-300 cursor-pointer border-0;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm
+           text-brand-500 border border-brand-500/60
+           hover:bg-brand-500/10 hover:-translate-y-0.5
+           transition-all duration-300 cursor-pointer bg-transparent;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm
+           text-slate-400 hover:text-white hover:bg-white/5
+           transition-all duration-200 cursor-pointer bg-transparent border-0;
+  }
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl text-sm text-white
+           bg-white/[0.04] border border-brand-500/20
+           focus:border-brand-500 focus:ring-2 focus:ring-brand-500/10 focus:outline-none
+           placeholder-slate-600 transition-all duration-200;
+  }
+  .select-field {
+    @apply w-full px-4 py-3 rounded-xl text-sm text-white
+           bg-white/[0.04] border border-brand-500/20
+           focus:border-brand-500 focus:outline-none
+           cursor-pointer transition-all duration-200;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold;
+  }
+  .badge-blue   { @apply bg-brand-500/15 text-brand-400 border border-brand-500/30; }
+  .badge-green  { @apply bg-emerald-500/15 text-emerald-400 border border-emerald-500/30; }
+  .badge-amber  { @apply bg-amber-500/15 text-amber-400 border border-amber-500/30; }
+  .badge-purple { @apply bg-purple-500/15 text-purple-400 border border-purple-500/30; }
+  .badge-red    { @apply bg-red-500/15 text-red-400 border border-red-500/30; }
+  .gradient-text {
+    @apply bg-gradient-to-r from-brand-500 via-cyan-400 to-purple-500 bg-clip-text text-transparent;
+    /* Fallback: if bg-clip-text fails (e.g. inside flex), show brand color */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .section-heading {
+    @apply font-display font-bold leading-tight;
+  }
+  .progress-bar {
+    @apply h-1.5 rounded-full bg-white/[0.06] overflow-hidden;
+  }
+  .progress-fill {
+    @apply h-full rounded-full transition-all duration-700 ease-out;
+  }
+  .tab-bar {
+    @apply flex gap-1 p-1.5 bg-surface-700/60 border border-brand-500/10 rounded-2xl;
+  }
+  .tab-item {
+    @apply flex-1 py-2 px-4 rounded-xl text-xs font-semibold cursor-pointer border-0 transition-all duration-200;
+  }
+  .tab-active   { @apply bg-brand-500/20 text-brand-400; }
+  .tab-inactive { @apply bg-transparent text-slate-500 hover:text-slate-300; }
+  .mesh-orb {
+    @apply absolute rounded-full pointer-events-none;
+  }
+}
+
+@layer utilities {
+  .font-display { font-family: 'Space Grotesk', sans-serif; }
+  .text-balance { text-wrap: balance; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+}
