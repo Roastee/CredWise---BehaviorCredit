@@ -60,7 +60,7 @@ const LandingPage = ({ navigate }) => {
 
         <div className="relative z-10 max-w-4xl mx-auto">
           <div className="badge badge-blue mb-6 text-sm">
-            🇮🇳 AAVISHKAR PRAVAH 2.0 · Team AntiGravity #108
+            CiperX
           </div>
 
           <h1 className="section-heading text-5xl sm:text-6xl lg:text-7xl mb-6 text-balance">
@@ -230,7 +230,7 @@ const LandingPage = ({ navigate }) => {
           Behavior<span className="text-brand-400">Credit</span>
         </div>
         <div className="text-xs text-slate-700">
-          © 2025 Team AntiGravity #108 · AAVISHKAR PRAVAH 2.0<br />
+          © 2025 CiperX<br />
           India's First AI-Powered Alternative Credit Scoring System
         </div>
       </footer>

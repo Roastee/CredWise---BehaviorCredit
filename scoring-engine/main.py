@@ -1,7 +1,7 @@
 """
 BehaviorCredit Scoring Engine v2.1 — FastAPI
 8-Signal AI scoring model → 300-900 BehaviorScore™
-Team AntiGravity #108 | AAVISHKAR PRAVAH 2.0
+CiperX
 Target: < 800ms response time
 """
 
@@ -436,7 +436,10 @@ async def nbfc_score_endpoint(applicant_id: str, api_key: str = ""):
 
 if __name__ == "__main__":
     import uvicorn
-    print("\n🚀 BehaviorCredit Scoring Engine v2.1")
+    try:
+        print("\n🚀 BehaviorCredit Scoring Engine v2.1")
+    except UnicodeEncodeError:
+        print("\n> BehaviorCredit Scoring Engine v2.1")
     print("   8-Signal AI Model | Target < 800ms")
     print("   Docs: http://localhost:8000/docs\n")
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
