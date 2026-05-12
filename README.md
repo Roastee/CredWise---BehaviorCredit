@@ -1,6 +1,6 @@
 # BehaviorCredit 🇮🇳
 ### AI-Powered Alternative Credit Scoring for 190M Credit-Invisible Indians
-**Team AntiGravity #108 | AAVISHKAR PRAVAH 2.0 Hackathon**
+CiperX
 
 ---
 
@@ -208,5 +208,4 @@ Score = 300 + Σ(signal_i × weight_i) → normalized to [300, 900]
 
 ---
 
-*Built in 24 hours by Team CiperX #108 for AAVISHKAR PRAVAH 2.0*
-*© 2026 BehaviorCredit — India's First AI-Powered Alternative Credit Scoring System*
+
