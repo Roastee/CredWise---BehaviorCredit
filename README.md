@@ -207,5 +207,5 @@ Score = 300 + Σ(signal_i × weight_i) → normalized to [300, 900]
 | AI/LLM | Google Gemini Pro (streaming + explainer) |
 
 ---
-
+Built By Shouri In Avishkaar Pravah 2.0 2026 
 
