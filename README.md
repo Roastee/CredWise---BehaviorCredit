@@ -1,7 +1,7 @@
 # BehaviorCredit 🇮🇳
 ### AI-Powered Alternative Credit Scoring for 190M Credit-Invisible Indians
 CiperX
-
+---
 ---
 
 ## 🚀 Quick Start (2 minutes)
